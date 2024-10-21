@@ -14,7 +14,6 @@ def null_value_check(df):
     print(f"These columns have null values: {null_column}")
 
 
-
 #checking columns type
 def columns_type(df):
     num_obj_column = 0
@@ -34,5 +33,24 @@ def columns_type(df):
 
     # Optionally return the counts if needed
     return num_obj_column, num_int_column, num_flt_column
+
+#statistics of each column
+def statistics_column(df, column):
+    # Check if the specified column exists in the DataFrame
+    if column in df.columns:
+        # Get the descriptive statistics for the specified column
+        description = df.describe().loc[:, column]
+
+        # Print each statistic
+        print(f"Statistics for '{column}':")
+        print(f"  Mean: {description['mean']}")
+        print(f"  Standard Deviation: {description['std']}")
+        print(f"  Minimum: {description['min']}")
+        print(f"  25th Percentile (Q1): {description['25%']}")
+        print(f"  Median (Q2): {description['50%']}")
+        print(f"  75th Percentile (Q3): {description['75%']}")
+        print(f"  Maximum: {description['max']}")
+    else:
+        print(f"Column '{column}' does not exist in the DataFrame.")
 
 
